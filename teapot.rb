@@ -7,7 +7,7 @@ teapot_version "3.0"
 define_target "nghttp3" do |target|
 	target.depends :platform
 	
-	target.depends "Library/picotls", public: true
+	target.depends "Library/ngtcp2", public: true
 	
 	target.depends "Build/Make"
 	target.depends "Build/CMake"
@@ -16,7 +16,7 @@ define_target "nghttp3" do |target|
 		source_files = target.package.path + "nghttp3"
 		cache_prefix = environment[:build_prefix] / environment.checksum + "nghttp3"
 		package_files = [
-			cache_prefix / "lib/nghttp3_static.a",
+			cache_prefix / "lib/libnghttp3.a",
 		]
 		
 		cmake source: source_files, install_prefix: cache_prefix, arguments: [
